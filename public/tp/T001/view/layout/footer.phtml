@@ -1,0 +1,92 @@
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="f1">
+                    <li>
+                        <h2>Đồng hành cùng chúng tôi</h2>
+                        <ul class="social">
+                            <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>Đăng ký nhận tin</h2>
+                        <p>Đăng ý Email của bạn để trở thành khách hàng đầu tiên được nhận thông tin ưu đãi mới nhất</p>
+                        <form>
+                            <input type="text" placeholder="Email" />
+                            <button data-gender="0" class="btn">Nam</button>
+                            <button data-gender="1" class="btn">Nữ</button>
+                        </form>
+                    </li>
+                    <li>
+                        <h2>Cửa hàng</h2>
+                        <p>
+                            ATHN1 - 18 Điện Biên Phủ<br/>
+                            Q. Ba Đình, 18 Điện Biên Phủ<br/>
+                            SĐT: 0439785174
+                        </p>
+                    </li>
+                </ul>
+
+                <ul class="f2">
+                    <li>
+                        <h2>Chính sách mua hàng online</h2>
+                        <p>
+                            <strong>Đổi hàng trong vòng 7 ngày</strong>
+                            Đổi hàng tự do trong vòng 365 ngày cho đơn hàng online
+                        </p>
+                        <p>
+                            <strong>Giao hàng nội thành Hà Nội chỉ 20.000Đ</strong>
+                            Giao hàng nội thành Hà Nội trong 48h và ngoài Hà Nội trong 72h
+                        </p>
+                        <p>
+                            <strong>Thanh toán an toàn</strong>
+                            Thanh toán qua ngân hàng hoặc thanh toán khi nhận hàng
+                        </p>
+                        <p>
+                            <strong>Xem chi tiết chính sách</strong>
+                        </p>
+                    </li>
+                    <li>
+                        <h2>Danh mục</h2>
+                        <?php
+                            $category = $this->category()->getCategories();
+                            if(count($category)){
+                            echo '<ul>';
+                            foreach($category as $c){
+                        ?>
+                                <li>
+                                    <a href="<?= $c->getViewLink() ?>"><i class="fa fa-angle-right"></i> <?= $c->getName() ?></a>
+                                </li>
+                        <?php
+                            }
+                        echo '</ul>';
+                        }
+                        ?>
+                    </li>
+                    <li>
+                        <h2>Liên hệ với chúng tôi</h2>
+                        <p>
+                            <strong>Thắc mắc mua hàng</strong>
+                            Tổng đài hỗ trợ: 19002009
+                        </p>
+                        <p>
+                            <strong>Góp ý chất lượng dịch vụ</strong>
+                            Tổng đài hỗ trợ: 19002009
+                        </p>
+                        <p>
+                            <strong>Bán buôn và order</strong>
+                            Liên hệ 091.442.9900 để có báo giá tốt nhất
+                        </p>
+                        <p>
+                            <strong>DWEB.VN</strong>
+                            Trụ sở chính: Tòa nhà Vân Hồ, 51 Lê Đại Hành, Hai Bà Trưng, Hà Nội
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

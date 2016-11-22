@@ -1,0 +1,231 @@
+@media only screen and (min-width:1024px) and (max-width:1200px) {
+
+}
+body{
+    font: 14px/18px Helvetica,Arial,'DejaVu Sans','Liberation Sans',Freesans,sans-serif;
+    background: #fff;
+}
+ul{
+    padding: 0 0;
+    margin: 0 0;
+}
+.container{
+    width: 1170px;
+}
+.head{
+    background: #fdd504;
+    height: 55px;
+}
+.logo>a{
+    background-position: 0 0;
+    width: 156px;
+    height: 30px;
+    background-image: url(https://cdn.tgdd.vn/v2015/Content/desktop/images/icontgdd@1x.png);
+    display: inline-block;
+    float: left;
+    margin: 14px 0 0 15px;
+}
+.logo{
+    width: 400px;
+    float: left;
+    background: #000;
+    height: 55px;
+}
+.logo>form{
+    margin: 10px 0 0 10px;
+    width: 210px;
+    float: left;
+    position: relative;
+}
+.logo>form>input[type=text]{
+    width: 195px;
+    height: 25px;
+    border: none;
+    padding: 5px 5px 5px 10px;
+    font-size: 13px;
+}
+.logo>form>a{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 35px;
+    width: 40px;
+    text-align: center;
+}
+.logo>form>a:before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-image: url(https://cdn1.tgdd.vn/v2015/Content/desktop/images/icontgdd@1x.png);
+    background-position: -160px 0;
+    display: inline-block;
+    position: relative;
+    top: 7px;
+}
+.nav{
+    float: left;
+    margin: 0 0;
+    height: 55px;
+    width: 790px;
+}
+.nav ul{
+    margin: 0 0;
+    display: inline-block;
+    width: 100%;
+    height: 55px;
+}
+.nav ul li{
+    display: inline-block;
+    float: left;
+}
+.nav ul li a{
+    color: #111;
+    font-size: 11px;
+    width: 65px;
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    padding: 5px 8px 0 8px;
+    height: 50px;
+}
+.nav ul li:hover a{
+    background: #f0f0f0;
+    text-decoration: none;
+}
+.nav ul li:nth-child(3) a{
+    width: 60px;
+}
+.nav ul li:nth-child(2) a{
+    width: 60px;
+}
+.i-mobile{
+    background-position: -210px 0;
+    width: 15px;
+    height: 25px;
+    display: block;
+    background-image: url(https://cdn1.tgdd.vn/v2015/Content/desktop/images/icontgdd@1x.png);
+    margin: 0px auto 3px auto;
+}
+.i-table{
+    background-image: url(https://cdn1.tgdd.vn/v2015/Content/desktop/images/icontgdd@1x.png);
+    background-position: -229px 0;
+    display: block;
+    margin: 2px auto 5px;
+    width: 32px;
+    height: 22px;
+}
+.i-laptop{
+    background-image: url(https://cdn1.tgdd.vn/v2015/Content/desktop/images/icontgdd@1x.png);
+    background-position: -265px 0;
+    display: block;
+    margin: 3px auto 5px;
+    width: 39px;
+    height: 21px;
+}
+/********* Product ***********/
+.clear{
+    clear: both;
+}
+a:hover{
+    text-decoration: none;
+}
+.homeFilter{
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    border-bottom: none;
+    margin: 10px 0 0 0;
+}
+.homeFilter .left{
+    width: 50%;
+    float: left;
+}
+.homeFilter .right{
+    width: 50%;
+    float: right;
+    text-align: right;
+}
+.homeFilter div a{
+    font-size: 12px;
+    color: #288ad6;
+    margin: 0 15px 0 0;
+}
+.homeFilter div a:hover{
+    text-decoration: none;
+}
+.homeFilter div a:last-child{
+    margin: 0 0;
+}
+.homeFilter div span{
+    margin: 0 15px 0 0;
+    font-size: 12px;
+    color: #666;
+}
+.lP{
+    border: 1px solid #f1f1f1;
+    display: inline-block;
+}
+.lP li{
+    list-style: none;
+    width: 236.8px;
+    position: relative;
+    display: inline-block;
+    float: left;
+    border-right: 1px solid #f1f1f1;
+    height: 335px;
+    border-bottom: 1px solid #f1f1f1;
+}
+.lP li:nth-child(5n+0){
+    border-right: none;
+}
+.lP li img{
+    max-width: 100%;
+}
+.lP li .pI{
+    display: block;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin: 15px 15px 10px 15px;
+}
+.lP li h1{
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    padding: 0 15px;
+    line-height: 18px;
+}
+.lP li h1 a{
+    color: #333;
+}
+.lP li p{
+    font-size: 14px;
+    color: #d0021b;
+    font-weight: 700;
+    padding: 0 15px;
+}
+.lP li .pI img{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.lP li .addCart{
+    cursor: pointer;
+    border: 1px solid #d97f00;
+    border-radius: 3px;
+    background: #f89406;
+    background: -webkit-gradient(linear,0% 0%,0% 100%,from(#f76b1c),to(#f89406));
+    background: -webkit-linear-gradient(top,#f89406,#f76b1c);
+    background: -moz-linear-gradient(top,#f89406,#f76b1c);
+    background: -ms-linear-gradient(top,#f89406,#f76b1c);
+    background: -o-linear-gradient(top,#f89406,#f76b1c);
+    padding: 4px 15px;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 13px;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}

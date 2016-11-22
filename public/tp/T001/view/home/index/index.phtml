@@ -1,0 +1,252 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Trang chủ')));
+    $this->headMeta()->appendName('description', ('Trang chủ'));
+    $this->headMeta()->appendName('keywords', ('Trang chủ'));
+    $this->headMeta()->appendProperty('og:title', 'Trang chủ');
+?>
+<div class="NavBannerAds">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="width200">1</div>
+                <?php
+                    $banner = $this->home()->getBanner(['positionId' => 1]);
+                    if(!count($banner)){
+                        echo '<div class="banner">';
+                        echo '<ul id="banner" class="owl-carousel owl-theme">';
+                        foreach($banner as $b){
+                            $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                            $img = '';
+                            if(count($images)){
+                                $c = 0;
+                                foreach($images as $i){
+                                    $c++;
+                                    if($c == 1){
+                                        $img = '<img class="lazyOwl" data-src="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                                    }
+                                }
+                            }
+                            echo '<li><a'.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>'.$img.'</a></li>';
+                        }
+                        echo '</ul></div>';
+                    }else{
+                        echo '<div class="banner">';
+                        echo '<ul id="banner" class="owl-carousel owl-theme">';
+                        echo '<li><a><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428394566_947.jpg" alt="banner 1"/></a></li>';
+                        echo '<li><a><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428394540_729.jpg" alt="banner 2"/></a></li>';
+                        echo '<li><a><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428394587_438.jpg" alt="banner 3"/></a></li>';
+                        echo '</ul></div>';
+                    }
+                ?>
+                <div class="width200 ADsRight">
+                    <ul>
+                        <li><a href=""><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428394908_802.png" alt="ADS 1"/> </a> </li>
+                        <li><a href=""><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428394847_779.png" alt="ADS 1"/> </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ProductOptionHome">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ProductOptionHomeContent">
+                    <ul class="NavProductOption">
+                        <li><a class="active" data-tab="#tab1">Mới nhất</a></li>
+                        <li><a data-tab="#tab2">Hot nhất</a></li>
+                        <li><a data-tab="#tab3">Xem nhiều</a></li>
+                        <li><a data-tab="#tab4">Mua nhiều</a></li>
+                        <li><a data-tab="#tab5">Giảm giá</a></li>
+                    </ul>
+                    <div id="tab1" class="newHome tab active">
+                        <?php
+                            $product = $this->product()->search(['limit' => 10]);
+                            if(count($product)){
+                                echo '<ul class="lP">';
+                                foreach($product as $p){
+                                    $images = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                                    $img = '';
+                                    if(count($images)){
+                                        $c = 0;
+                                        foreach($images as $i){
+                                            $c++;
+                                            if($c == 1){
+                                                $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                            }
+                                        }
+                                    }
+                                    echo '<li class="item">
+                                        <a class="pI" href="'.$p->getViewLink().'">'.$img.'</a>
+                                        <p '.($p->getPriceOld() ? 'class="oldPrice"':'').'>'.($p->getPriceOld() ? '<span>'.number_format($p->getPriceOld()).'₫</span><i>'.number_format($p->getPrice()).'₫</i>':number_format($p->getPrice()).'₫').'</p>
+                                        <h2><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h2>
+                                    </li>';
+                                }
+                                echo '</ul>';
+                            }
+                        ?>
+                    </div>
+                    <div id="tab2" class="tab" style="display: none"><p style="text-align: center;padding: 20px 0">Hot nhất đang cập nhật</p></div>
+                    <div id="tab3" class="tab" style="display: none"><p style="text-align: center;padding: 20px 0">Xem nhiều đang cập nhật</p></div>
+                    <div id="tab4" class="tab" style="display: none"><p style="text-align: center;padding: 20px 0">Mua nhiều đang cập nhật</p></div>
+                    <div id="tab5" class="tab" style="display: none">
+                        <?php
+                            $productSale = $this->product()->search(['sale' => true, 'limit' => 10]);
+                            if(count($productSale)){
+                                echo '<ul class="lP">';
+                                foreach($productSale as $p){
+                                    $images = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                                    $img = '';
+                                    if(count($images)){
+                                        $c = 0;
+                                        foreach($images as $i){
+                                            $c++;
+                                            if($c == 1){
+                                                $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                            }
+                                        }
+                                    }
+                                    echo '<li class="item">
+                                            <a class="pI" href="'.$p->getViewLink().'">'.$img.'</a>
+                                            <p '.($p->getPriceOld() ? 'class="oldPrice"':'').'>'.($p->getPriceOld() ? '<span>'.number_format($p->getPriceOld()).'₫</span><i>'.number_format($p->getPrice()).'₫</i>':number_format($p->getPrice()).'₫').'</p>
+                                            <h2><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h2>
+                                        </li>';
+                                }
+                                echo '</ul>';
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ADsHome1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul>
+                    <li><a href=""><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428395267_690.jpg" alt="ads1" /></a></li>
+                    <li><a href=""><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428394995_896.jpg" alt="ads2" /></a></li>
+                    <li><a class="active" href=""><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428394976_924.jpg" alt="ads3" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ADsHome2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href=""><img src="http://t0161.store.nhanh.vn/cdn/store/3178/bn/sb_1428395417_976.jpg" alt="ads2" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="category">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?php
+                    $categoryProduct = $this->category()->getCategories();
+                    if(count($categoryProduct)){
+                ?>
+                        <ul class="categoryProductHome">
+                            <?php
+                                $i = 1;
+                                foreach($categoryProduct as $c){
+                                    ?>
+                                        <li>
+                                            <div class="c-h-1">
+                                                <h2><span><?= $i++ ?></span><a href="<?= $c->getViewLink() ?>"><?= $c->getName() ?></a></h2>
+                                                <p>
+                                                    <a href="<?= $c->getViewLink() ?>?show=bestseller">Mua nhiều</a>
+                                                    <a href="<?= $c->getViewLink() ?>?show=mostview">Xem nhiều</a>
+                                                </p>
+                                                <?php
+                                                    if($c->getChilds()){
+                                                ?>
+                                                    <ul>
+                                                        <?php
+                                                            foreach($c->getChilds() as $cc){
+                                                                echo '<li><a href="'.$cc->getViewLink().'"><i class="fa fa-angle-right"></i>'.$cc->getName().'</a></li>';
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
+                                            <?php
+                                                $images = $this->home()->getImages(['id' => $c->getId(), 'type' => 3]);
+                                                $img = '';
+                                                if(count($images)){
+                                                    $c = 0;
+                                                    foreach($images as $i){
+                                                        $c++;
+                                                        if($c == 1){
+                                                            $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                                        }
+                                                    }
+                                                }
+                                            ?>
+                                            <div class="c-h-2">
+                                                <a href="<?= $c->getViewLink() ?>">
+                                                    <?php
+                                                        if($img != ''){
+                                                            echo $img;
+                                                        }else{
+                                                            echo '<span>No Image</span>';
+                                                        }
+                                                    ?>
+                                                </a>
+                                            </div>
+                                            <div class="c-h-3">
+                                                <?php
+                                                $ids = $c->getId();
+                                                if($c->getChilds()){
+                                                    $ids = $c->getChildIds($c->getChilds());
+                                                }
+
+                                                $products = $this->product()->search(['limit' => 6, 'categoryId' => $ids]);
+
+                                                if(count($products)){
+                                                    echo '<ul class="lP2">';
+                                                    foreach($products as $p){
+                                                        $images1 = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                                                        $img1 = '';
+                                                        if(count($images1) && isset($images1)){
+                                                            $count = 0;
+                                                            foreach($images1 as $img){
+                                                                $count++;
+                                                                if($count == 1){
+                                                                    $img1 = '<img src="'.$img->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                                                }
+                                                            }
+                                                        }
+                                                        echo '<li class="item">
+                                                            <h2><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h2>
+                                                            <a class="pI" href="'.$p->getViewLink().'">'.$img1.'</a>
+                                                            <p '.($p->getPriceOld() ? 'class="oldPrice"':'').'>'.($p->getPriceOld() ? '<span>'.number_format($p->getPriceOld()).'₫</span><i>'.number_format($p->getPrice()).'₫</i>':number_format($p->getPrice()).'₫').'</p>
+                                                        </li>';
+                                                    }
+                                                    echo '</ul>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </li>
+                                    <?php
+                                }
+                            ?>
+                        </ul>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>

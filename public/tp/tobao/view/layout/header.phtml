@@ -1,0 +1,31 @@
+<div class="head">
+    <div class="Logo_Search_Adv">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="">Logo</a></h1>
+            </div>
+            <div class="formSearch">
+                <form action="post">
+                    <input type="text" placeholder="Bạn cần tìm ..." />
+                    <input type="submit" value="Tìm" />
+                </form>
+            </div>
+            <div class="adv">
+
+            </div>
+        </div>
+    </div>
+    <div class="navBar">
+        <div class="container">
+            <ul>
+                <li><a class="active" href="/">Trang chủ</a></li>
+                <?php
+                    $nav = $this->newsCategory()->getCategories();
+                    foreach($nav as $navs){
+                        echo '<li><a href="'.$navs->getViewLink().'">'.$navs->getName().'</a></li>';
+                    }
+                ?>
+            </ul>
+        </div>
+    </div>
+</div>

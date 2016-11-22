@@ -1,0 +1,78 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Trang chủ')));
+    $this->headMeta()->appendName('description', ('Trang chủ'));
+    $this->headMeta()->appendName('keywords', ('Trang chủ'));
+    $this->headMeta()->appendProperty('og:title', 'Trang chủ');
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+                $banner = $this->home()->getBanner(['positionId' => 1]);
+                if(count($banner)){
+                    echo '<ul id="banner" class="owl-carousel owl-theme">';
+                    foreach($banner as $b){
+                        $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.html_entity_decode($b->getName()).'" />';
+                                }
+                            }
+                        }
+
+                        echo '<li><a'.($b->getLink() ? ' href="'.$b->getLink().'"':'').'><div><h2>'.html_entity_decode($b->getName()).'</h2>'.html_entity_decode($b->getDescription()).'</div>'.$img.'</a></li>';
+                    }
+                    echo '</ul>';
+                }
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="categoryHome">
+                <?php
+                $category = $this->category()->getCategories();
+                ?>
+                <ul>
+                    <?php
+                    if(count($category)){
+                        foreach($category as $c){
+                            ?>
+                            <li>
+                            <a href="<?= $c->getViewLink() ?>"><?= $c->getName() ?><span>Nhấn để xem</span></a>
+                            <?php
+                            if($c->getChilds()){
+                                echo '<ul class="nav2">';
+                                foreach($c->getChilds() as $cc){
+                                    $images = $this->home()->getImages(['id' => $cc->getId(), 'type' => 3]);
+                                    $img = '';
+                                    if(count($images)){
+                                        $c = 0;
+                                        foreach($images as $i){
+                                            $c++;
+                                            if($c == 1){
+                                                $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$cc->getName().'" />';
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    <li><a href="<?= $cc->getViewLink() ?>"><?= $img ?><h2><?= $cc->getName() ?></h2></a></li>
+                                <?php
+                                }
+                                echo '</ul>';
+                            }
+                            ?>
+                            </li>
+                        <?php
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

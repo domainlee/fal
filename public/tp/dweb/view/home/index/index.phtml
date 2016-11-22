@@ -1,0 +1,63 @@
+<?php
+//    $this->headTitle($this->escapeHtml($this->translate('Trang chủ')));
+    $this->headMeta()->appendName('content', ('DWEB - là một cơ quan thiết kế website sáng tạo có trụ sở tại 295A Hoàng Mai, Hà Nội. Chúng tôi cung cấp dịch vụ thiết kế UI/UX layout Website/Mobile xây dựng thương hiệu'));
+    $this->headMeta()->appendName('keywords', ('Thiết kế website theo yêu cầu, UI/UX, Nhận dạng thương hiệu'));
+    $this->headMeta()->appendProperty('og:title', 'Difference Web');
+?>
+
+<div class="wrapper">
+    <div class="header">
+        <div class="container1">
+            <div class="logo">
+                <a href="/" title="Differrence Web"><img src="/tp/dweb/image/dweb.png" alt="Differrence Web" /></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <?php
+            echo $this->render('layout/about');
+        ?>
+        <div class="profilo">
+            <?php
+                $new = $this->news()->searchArticle(['categoryId' => [1,2,10]]);
+                if(count($new)){
+            ?>
+            <ul>
+                <?php
+                    foreach($new as $n){
+                        $like = $this->home()->getLike(['id' => $n->getId(), 'type' => 1]);
+                        $images = $this->home()->getImages(['id' => $n->getId(), 'type' => 1]);
+                ?>
+                    <li>
+                        <a href="<?= $n->getViewLink() ?>">
+                            <?php
+                                if(count($images)){
+                                    $c = 0;
+                                    foreach($images as $i){
+                                        $c++;
+                                        if($c == 1){
+                                            echo '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$n->getTitle().'" />';
+                                        }
+                                    }
+                                }
+                            ?>
+                            <div class="overlay">
+                                <summary>
+                                    <h2><?= $n->getTitle() ?></h2>
+                                    <h3>Identity, Website &amp; Photography</h3>
+                                </summary>
+                                <div class="loves"><span><?= $like ?></span></div>
+                            </div>
+                        </a>
+                    </li>
+                <?php
+                }
+                ?>
+                <div class="clear"></div>
+            </ul>
+            <?php
+                }
+            ?>
+        </div>
+    </div>

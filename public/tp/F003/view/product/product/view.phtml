@@ -1,0 +1,219 @@
+<?php
+    $product = $this->results;
+    $this->headTitle($this->escapeHtml($this->translate($product->getName())));
+    $this->headMeta()->appendName('description', ($product->getName()));
+    $this->headMeta()->appendName('keywords', ($product->getName()));
+    $this->headMeta()->appendProperty('og:title', $product->getName());
+    $category = $this->category;
+    $images  = $this->images;
+
+    $prodCategory = $this->category();
+
+    $cs = [
+        '/js/cloudzoom/cloudzoom.css',
+        '/tp/F003/css/p.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+    $js = [
+        '/js/cloudzoom/cloudzoom.js',
+        '/js/jquery.carouFredSel-6.2.1-packed.js',
+        '/tp/F003/js/p.js'
+    ];
+    echo '<script type="text/javascript" src="'.srcLink($js,1).'"></script>';
+?>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <?php
+                if($category->getParentId()){
+                    $cc = $prodCategory->getId($category);
+                    if($cc->getParentId()){
+                        $ccc = $prodCategory->getId($cc);
+                        if($ccc->getParentId()){
+                            $cccc = $prodCategory->getId($ccc);
+                        }
+                    }
+                }
+                ?>
+                <ul class="breadcrumb">
+                    <li><a href="/">Trang chủ</a></li>
+                    <?= (isset($cccc) ? '<li><a href="'.$cccc->getViewLink().'">'.$cccc->getName().'</a></li>':null) ?>
+                    <?= (isset($ccc) ? '<li><a href="'.$ccc->getViewLink().'">'.$ccc->getName().'</a></li>':null) ?>
+                    <?= (isset($cc) ? '<li><a href="'.$cc->getViewLink().'">'.$cc->getName().'</a></li>':null) ?>
+                    <li><a href="<?= $category->getViewLink(); ?>"><?= $category->getName(); ?></a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="left">
+                    <h2>Sản phẩm</h2>
+                    <ul class="categoryProduct">
+                        <?php
+                        $category = $this->category()->getCategories();
+                        if(count($category)){
+                            foreach($category as $c){
+                                ?>
+                                <li <?= ($c->getChilds() ? 'class="navIsset"':null) ?>>
+                                <a href="<?= $c->getViewLink() ?>"><?= $c->getName() ?></a>
+                                <?php
+                                if($c->getChilds()){
+                                    echo '<ul class="nav2">';
+                                    foreach($c->getChilds() as $cc){
+                                        ?>
+                                        <li><a href="<?= $cc->getViewLink() ?>"><?= $cc->getName() ?></a></li>
+                                    <?php
+                                    }
+                                    echo '</ul>';
+                                }
+                                ?>
+                                </li>
+                            <?php
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="detailProduct">
+                    <?php
+                        if(count($images)){
+                            echo '<ul id="product" class="owl-carousel owl-theme">';
+                            foreach($images as $i){
+                                echo '<li><img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$results->getName().'" /></li>';
+                            }
+                            echo '</ul>';
+                        }
+                    ?>
+                    <div id="imgZoom">
+                        <?php
+    //                        $images = $this->home()->getImages(['id' => $product->getId(), 'type' => 2]);
+                            $img = '';
+                            $imgs = [];
+                            if(count($images)){
+                                $c = 0;
+                                foreach($images as $i){
+                                    $c++;
+                                    if($c == 1){
+                                        $img = $i->getOption('media')->getPictureUri();
+                                    }
+                                    $imgs[] = $i->getOption('media')->getPictureUri();
+                                }
+                            }
+                        ?>
+                        <div id="zoomSlide">
+                            <a href="#" id="prevSlideZ"></a>
+                            <a href="#" id="nextSlideZ"></a>
+                            <ul id="listImgZoom_2">
+                                <?php
+                                if (count($imgs)) {
+                                    foreach ($imgs as $childImg) {
+                                        ?>
+                                        <li data-src="<?= $childImg ?>">
+                                            <img class='cloudzoom-gallery' src="<?= $childImg ?>" data-cloudzoom="useZoom: '.cloudzoom', image: '<?= $childImg ?>', zoomImage: '<?= $childImg ?>'">
+                                        </li>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                        <div id="zoomer">
+                            <img id="z" width="100%" class="cloudzoom" src="<?= $img ?>"
+                                 data-cloudzoom="
+                             zoomImage: '<?= $img ?>',
+                             animationTime: 50,
+                             easeTime: 0,
+                             easing: 0,
+                             zoomFlyOut: false,
+                             zoomWidth: 300,
+                             zoomHeight: 300"/>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!---- End imgZoom ---->
+
+
+                    <div class="descriptionProduct">
+                        <h1><?= $product->getName() ?></h1>
+                        <p class="code">Mã sản phẩm: <?= $product->getCode() ?></p>
+                        <?php
+                            echo '<p class="price">'.($product->getPriceOld() ? '<span>'.number_format($product->getPriceOld()).'₫</span><i>'.number_format($product->getPrice()).'₫</i>':'<span>'.number_format($product->getPrice()).'₫</span>').'</p>';
+                        ?>
+                        <?php
+                            $attr = $this->home()->getAttr(['id' => $product->getId()]);
+                            if(count($attr)){
+                                echo '<p class="attr attrColor">';
+                                    echo '<label>Màu sắc: </label>';
+                                    foreach($attr as $at){
+                                        if($at->getType() == 1){
+                                            echo '<a data-attr="'.$at->getProductAttrId().'" data-type="'.$at->getType().'" style="background-color: '.$at->getColorCode().'" title="'.$at->getName().'"></a>';
+                                        }
+                                    }
+
+                                echo '</p>';
+                                echo '<p class="attr attrSize">';
+                                    echo '<label>Size: </label>';
+                                    foreach($attr as $at){
+                                        if($at->getType() == 2){
+                                            echo '<a data-attr="'.$at->getProductAttrId().'" data-type="'.$at->getType().'">'.$at->getName().'</a>';
+                                        }
+                                    }
+                                    echo '<span><a href="">Hướng dẫn size</a></span>';
+                                echo '</p>';
+                            }
+                        ?>
+                        <p class="fav">
+                            <a data-id="<?= $product->getId() ?>"><i class="fa fa-heart" aria-hidden="true"></i>Thêm vào mục yêu thích</a>
+                        </p>
+                        <p class="productQuantity">
+                            <label>Số lượng: </label>
+                            <i id="QttDown">-</i>
+                            <i id="Quantity" data-max="<?= $product->getQuantity(); ?>" data-value="1">1</i>
+                            <i id="QttUp">+</i>
+                        </p>
+                        <p class="lAddCard">
+                            <a class="btnAddCart" data-id="<?= $product->getId() ?>" data-color="" data-size="" data-quantity="1">Giỏ hàng</a>
+                        </p>
+
+                        <div class="description">
+                            <h2><span>Thông tin chi tiết</span></h2>
+                            <div>
+                                <?= $product->getIntro() ? html_entity_decode($product->getIntro()):'<p>Chưa được cập nhật</p>' ?>
+                            </div>
+                        </div>
+
+                        <div class="social" style="display: none">
+                            <h2><span>Chia sẻ cho bạn bè</span></h2>
+                            <a class="fb" href=""></a>
+                            <a class="gg" href=""></a>
+                            <a class="pt" href=""></a>
+                            <a class="it" href=""></a>
+                            <a class="yt" href=""></a>
+                        </div>
+
+                    </div>
+                    <!---- End descriptionProduct ---->
+                </div>
+                <!---- End detailProduct ---->
+
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="<?= $product->getViewLink() ?>" id="viewLink" />
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Giỏ hàng</h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>

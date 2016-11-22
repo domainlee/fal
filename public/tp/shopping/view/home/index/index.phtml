@@ -1,0 +1,54 @@
+<div id="banner">
+	<a href=""><img src="/tp/shopping/img/banner/ban1.jpg"/></a>
+</div>
+
+<div id="lastedNew">
+<?php for($i=0;$i<3;$i++){?>
+	<div id="laNews-item">
+		<a href="">
+			<img src="/tp/shopping/img/news1.jpg"/>
+		</a>
+		<p id="laNews-item-name">
+			<a href="">Thời trang hè</a>
+		</p>
+		<p style="padding-top: 5px;">
+			<a href="">Xem thêm +</a>
+		</p>
+	</div>
+<?php }?>
+</div>
+<?php $product = $this->product()->getMostView()?>
+<div id="lastedPro">
+	<h3>Hàng mới về</h3>
+	<div id="list-pro">
+	<?php foreach ($product as $item){?>
+	<div id="pro-item" class="pro-item">
+		<a href="<?= $item->getViewLink();?>">
+			<img src="<?= $item->getImgUri();?>" />
+		</a>
+		<div id="name-price">
+			<i></i>
+			<p id="pro-name"><a href="<?= $item->getViewLink();?>"><?= $item->getName();?></a></p>
+			<p id="pro-price"><?= number_format($item->getPrice());?> Vnđ</p>
+		</div>
+	</div>
+	<?php }?>
+	</div>
+</div>
+<div id="lastedPro">
+	<h3>Hàng bán chạy nhất</h3>
+	<div id="list-pro">
+	<?php for ($i=0;$i<4;$i++){?>
+	<div id="pro-item" class="pro-item">
+		<a href="">
+			<img src="/tp/shopping/img/pro1.jpg"/>
+		</a>
+		<div id="name-price">
+			<i></i>
+			<p id="pro-name"><a href="">Váy xòe mùa hè</a></p>
+			<p id="pro-price">300,000 Vnđ</p>
+		</div>
+	</div>
+	<?php }?>
+	</div>
+</div>

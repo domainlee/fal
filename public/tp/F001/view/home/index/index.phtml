@@ -1,0 +1,170 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Trang chủ')));
+    $this->headMeta()->appendName('description', ('Trang chủ'));
+    $this->headMeta()->appendName('keywords', ('Trang chủ'));
+    $this->headMeta()->appendProperty('og:title', 'Trang chủ');
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+                $banner = $this->home()->getBanner(['positionId' => 1]);
+                if(count($banner)){
+                    echo '<ul id="banner" class="owl-carousel owl-theme">';
+                    foreach($banner as $b){
+                        $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img class="owl-lazy" data-src="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                                }
+                            }
+                        }
+                        echo '<li><a'.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>'.$img.'</a></li>';
+                    }
+                    echo '</ul>';
+                }
+
+                $feature = $this->home()->getBanner(['positionId' => 2]);
+                if(count($feature)){
+                    echo '<ul id="feature">';
+                    foreach($feature as $f){
+                        $images = $this->home()->getImages(['id' => $f->getId(), 'type' => 4]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img class="lazy" src="/tp/F001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$f->getName().'" />';
+                                }
+                            }
+                        }
+                        echo '<li><a'.($f->getLink() ? ' href="'.$f->getLink().'"':'').'>'.$img.'</a></li>';
+                    }
+                    echo '</ul>';
+                }
+            ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+                $product = $this->product()->search(['categoryId' => [28], 'limit' => 8]);
+                if(count($product)){
+                    echo '<h1 class="titleHome"><span>Nam</span></h1>';
+                    echo '<ul class="lP">';
+                    foreach($product as $p){
+                        $images = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img class="lazy" src="/tp/F001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                }
+                            }
+                        }
+                        echo '<li>
+                            <a class="pI" href="'.$p->getViewLink().'">'.$img.'</a>
+                            <div>
+                                <h2><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h2>
+                                <p '.($p->getPriceOld() ? 'class="oldPrice"':'').'>'.($p->getPriceOld() ? '<span>'.number_format($p->getPriceOld()).'₫</span><i>'.number_format($p->getPrice()).'₫</i>':number_format($p->getPrice()).'₫').'</p>
+                            </div>
+                        </li>';
+                    }
+                    echo '</ul>';
+                }
+
+                $product = $this->product()->search(['categoryId' => [19,20], 'limit' => 8]);
+                if(count($product)){
+                    echo '<h1 class="titleHome"><span>Nữ</span></h1>';
+                    echo '<ul class="lP">';
+                    foreach($product as $p){
+                        $images = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img class="lazy" src="/tp/F001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                }
+                            }
+                        }
+                        echo '<li>
+                                <a class="pI" href="'.$p->getViewLink().'">'.$img.'</a>
+                                <div>
+                                    <h2><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h2>
+                                    <p '.($p->getPriceOld() ? 'class="oldPrice"':'').'>'.($p->getPriceOld() ? '<span>'.number_format($p->getPriceOld()).'₫</span><i>'.number_format($p->getPrice()).'₫</i>':number_format($p->getPrice()).'₫').'</p>
+                                </div>
+                            </li>';
+                    }
+                    echo '</ul>';
+                }
+
+                $productSale = $this->product()->search(['sale' => true, 'limit' => 8]);
+                if(count($productSale)){
+                    echo '<h1 class="titleHome"><span>Hàng giảm giá</span></h1>';
+                    echo '<ul class="lP">';
+                    foreach($productSale as $p){
+                        $images = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img class="lazy" src="/tp/F001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                }
+                            }
+                        }
+                        echo '<li>
+                                <a class="pI" href="'.$p->getViewLink().'">'.$img.'</a>
+                                <div>
+                                    <h2><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h2>
+                                    <p '.($p->getPriceOld() ? 'class="oldPrice"':'').'>'.($p->getPriceOld() ? '<span>'.number_format($p->getPriceOld()).'₫</span><i>'.number_format($p->getPrice()).'₫</i>':number_format($p->getPrice()).'₫').'</p>
+                                </div>
+                            </li>';
+                    }
+                    echo '</ul>';
+                }
+            ?>
+        </div>
+    </div>
+
+    <div class="row nHome">
+        <div class="col-md-12">
+            <?php
+                $new = $this->news()->searchArticle(['limit' => 3]);
+                if(count($new)){
+                    echo '<h1 class="titleHome"><span>Tin tức</span></h1>';
+                    echo '<ul class="lN">';
+                    foreach($new as $n){
+                        $images = $this->home()->getImages(['id' => $n->getId(), 'type' => 1]);
+                        $img = '';
+                        if(count($images)){
+                            $c = 0;
+                            foreach($images as $i){
+                                $c++;
+                                if($c == 1){
+                                    $img = '<img class="lazy" src="/tp/F001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$n->getTitle().'" />';
+                                }
+                            }
+                        }
+                        echo '<li>
+                            <a href="'.$n->getViewLink().'">'.$img.'</a>
+                            <h2><a href="'.$n->getViewLink().'">'.$n->getTitle().'</a></h2>
+                            <p><a href="'.$n->getViewLink().'">Xem thêm <i class="fa fa-angle-right"></i></a></p>
+                        </li>';
+                    }
+                    echo '</ul>';
+                }
+            ?>
+        </div>
+    </div>
+</div>

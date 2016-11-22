@@ -1,0 +1,51 @@
+<?php
+    $cs = [
+        '/tp/F003/css/p.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+?>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left">
+                    <h2>Sản phẩm</h2>
+                    <ul class="categoryProduct">
+                        <?php
+                        $category = $this->category()->getCategories();
+                        if(count($category)){
+                            foreach($category as $c){
+                                ?>
+                                <li>
+                                <a href="<?= $c->getViewLink() ?>"><?= $c->getName() ?></a>
+                                <?php
+                                if($c->getChilds()){
+                                    echo '<ul class="nav2">';
+                                    foreach($c->getChilds() as $cc){
+                                        ?>
+                                        <li><a href="<?= $cc->getViewLink() ?>"><?= html_entity_decode($cc->getName()) ?></a></li>
+                                    <?php
+                                    }
+                                    echo '</ul>';
+                                }
+                                ?>
+                                </li>
+                            <?php
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="right">
+                    <div class="contentPage">
+                        <?php
+                            echo html_entity_decode($this->page->getDescription());
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

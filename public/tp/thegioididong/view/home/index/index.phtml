@@ -1,0 +1,52 @@
+<?php
+
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="homeFilter">
+                <div class="left">
+                    <span>Hãng điện thoại:</span>
+                    <a href="/dtdd-samsung">Samsung</a>
+                    <a href="/dtdd-nokia-microsoft">Nokia - Microsoft</a>
+                    <a href="/dtdd-apple-iphone">Apple (iPhone)</a>
+                    <a href="/dtdd-sony">Sony</a>
+                    <a href="/dtdd-oppo">OPPO</a>
+                </div>
+                <div class="right">
+                    <span>Mức giá:</span>
+                    <a href="/dtdd?p=tren-15-trieu">Trên 15 triệu</a>
+                    <a href="/dtdd?p=tu-10-15-trieu">Từ 10 - 15 triệu</a>
+                    <a href="/dtdd?p=tu-7-10-trieu">Từ 7 - 10 triệu</a>
+                    <a href="/dtdd?p=tu-3-7-trieu">Từ 3 - 7 triệu</a>
+                    <a href="/dtdd?p=tu-1-3-trieu">Từ 1 - 3 triệu</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <?php
+                $product = $this->product()->search();
+                if($product){
+                    echo '<ul class="lP">';
+                    foreach($product as $p){
+                        echo '<li>
+                            <a class="pI" href="'.$p->getViewLink().'"><img src="'.($p->getImgUri() ? $p->getImgUri():'/images/product/product/726cbbfb2a5d665bfa927ac08d86375a.jpg').'" alt="'.$p->getName().'" /></a>
+                            <h1><a href="'.$p->getViewLink().'">'. $p->getName().'</a></h1>
+                            <p>'.number_format($p->getPrice()).'₫</p>
+                            <a class="addCart" data-id="'.$p->getId().'" data-quality="1">Mua</a>
+                            <a style="display: none" class="remove" data-id="'.$p->getId().'"> Remove</a>
+                        </li>';
+                    }
+                    echo '</ul>';
+                }
+            ?>
+        </div>
+    </div>
+</div>
+<style>
+    a{
+        cursor: pointer;
+    }
+</style>
+<script>
+
+</script>

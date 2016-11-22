@@ -1,0 +1,63 @@
+<?php
+    $view = $this->news;
+    $a = json_decode($view->getExtraContent());
+    $this->headTitle($this->escapeHtml($this->translate($view->getTitle())));
+    $this->headMeta()->appendName('description', ($view->getTitle() ? : $view->getTitle()));
+    $this->headMeta()->appendName('keywords', ($view->getExtraContent() ? $a->serivce : $view->getTitle()));
+    $this->headMeta()->appendProperty('og:title', $view->getTitle());
+?>
+<div class="wrapper">
+
+    <div class="detail">
+        <div class="left">
+            <div>
+                <div class="logo">
+                    <a href="/" title="Differrence Web"><img src="/tp/dweb/image/dweb.png" alt="Differrence Web" /></a>
+                </div>
+                <div class="detailContent">
+                    <h1><?= $view->getTitle() ?></h1>
+                    <div>
+                        <?php
+                            echo html_entity_decode($view->getContent());
+                        ?>
+                        <div class="service">
+                            <h2>Dịch vụ</h2>
+                            <p><?= $view->getExtraContent() ? $a->serivce : '' ?></p>
+                        </div>
+                        <div class="toReviewSite">
+                            <a href="<?= $view->getExtraContent() ? $a->link : '' ?>" target="_blank">Đến Website</a>
+                        </div>
+                        <div class="toolView">
+                            <a class="backHome" href="http://dweb.vn">dweb.vn</a>
+                            <?php
+                                $like = $this->home()->getLike(['id' => $view->getId(), 'type' => 1]);
+                                if(isset($_COOKIE[$view->getId()])) {
+                                    echo  '<a class="like isLike" title="Đã like"><span>'.$like.'</span></a>';
+                                }else{
+                                    echo  '<a id="like" class="like" data-id="'.$view->getId().'" data-type="'.$view->getViewLink().'"><span>'.$like.'</span></a>';
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <?php
+                $images = $this->home()->getImages(['id' => $view->getId(), 'type' => 1]);
+                if(count($images)){
+                    $c = 0;
+                    foreach($images as $i){
+                        $c++;
+                        if($c > 1){
+                            echo '<img style="margin: 0 0 10px 0" src="'.$i->getOption('media')->getPictureUri().'" alt="'.$view->getTitle().'" />';
+                        }
+                    }
+                }
+            ?>
+        </div>
+        <div class="clear"></div>
+    </div>
+    </div>
+

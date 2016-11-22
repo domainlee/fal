@@ -1,0 +1,72 @@
+<div id="product">
+	<div id="menu-pro">
+		<div id="menu-items">
+			<a href="#">
+				<i class="fa fa-star" id="pro-icon"></i>
+				<p>Nổi bật</p>
+			</a>
+		</div>
+		<div id="menu-items">
+			<a href="#">
+				<i class="fa fa-fire" id="pro-icon"></i>
+				<p>Thời trang</p>
+			</a>
+		</div>
+		<div id="menu-items">
+			<a href="#">
+				<i class="fa fa-laptop" id="pro-icon"></i>
+				<p>Điện máy</p>
+			</a>
+		</div>
+		<div id="menu-items">
+			<a href="#">
+				<i class="fa fa-gift" id="pro-icon"></i>
+				<p>Hoa & Quà tặng</p>
+			</a>
+		</div>
+		<div id="menu-items">
+			<a href="#">
+				<i class="fa fa-female" id="pro-icon"></i>
+				<p>Trẻ em</p>
+			</a>
+		</div>
+		<div id="menu-items">
+			<a href="#">
+				<i class="fa fa-wheelchair" id="pro-icon"></i>
+				<p>Nội thất</p>
+			</a>
+		</div>
+		<div id="menu-items">
+			<a href="#">
+				<i class="fa fa-anchor" id="pro-icon"></i>
+				<p>Khác</p>
+			</a>
+		</div>
+	</div>
+	<div id="pro-ct">
+	<?php for ($i=0;$i<=5;$i++){?>
+		<div id="pro-ct-items">
+			<div id="pro-ct-item">
+				<img src="/images/product/mau1.png" title="">
+			</div>
+		</div>
+		<?php }?>
+	</div>
+</div>
+<div>
+<?php 
+$paginator = $this->paginator;
+if(count($paginator)){
+foreach ($paginator as $item){
+	echo $item->getName()."<br>";
+}
+}
+echo $this->paginationControl($paginator, 'Sliding', 'partial/listPage');
+?>
+
+</div>
+
+
+
+
+

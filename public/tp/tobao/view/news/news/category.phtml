@@ -1,0 +1,20 @@
+
+<div class="content">
+    <div class="container">
+        <div class="main">
+            <div class="leftMain">
+                <h1>Danh mục</h1>
+                <?php
+                $a =  $this->paginator;
+                foreach($a as $b){
+                    echo $b->getContent();
+                }
+                ?>
+                <div class="clear"></div>
+            </div>
+            <div class="advMain">
+
+            </div>
+        </div>
+    </div>
+</div>

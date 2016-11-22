@@ -1,0 +1,83 @@
+<div class="head">
+    <div class="head1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"><p>FREE SHIPPING KHI MUA ONLINE TẠI CÁC TỈNH VÀ THÀNH PHỐ CHƯA CÓ CỬA HÀNG REMMY</p></div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </div>
+    <div class="head2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div>
+                        <a href="/">Hướng dẫn mua hàng online</a>
+                        <?php
+                            $cartService = $this->cart()->getServiceCart();
+                            $products = $cartService->getProducts();
+                        ?>
+                        <a href="/cart">Giỏ hàng</a>
+                        <a class="btSearch">Search<span onclick="document.getElementById('search').submit();"></span></a>
+                        <div class="formSearch">
+                            <form id="search" action="/search" method="get">
+                                <input type="text" name="q" placeholder="Tìm kiếm ..."/>
+                                <div id="searchFolding"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="RegisterLogin">
+                        <?php
+                        if ($this->user()->hasIdentity()) {
+                            ?>
+                            <li><a>Xin chào: <?= $this->user()->getUser()->getFullName() ? $this->user()->getUser()->getFullName():ucfirst($this->user()->getUser()->getUserName()) ?></a></li>
+                            <li><a href="/user/signout">Thoát</a></li>
+                        <?php
+                        }else{
+                        ?>
+                            <li><a href="/user/signup">Đăng ký</a></li>
+                            <li><a href="/user/signin">Đăng nhập</a></li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="head3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <a class="logo" href="/"><img src="http://remmy.vn/cdn/store/882/store_1463366906_660.png" alt="Fashion" /></a>
+                    <form id="searchMobile" action="/search" method="get">
+                        <input type="text" name="q" placeholder="Tìm kiếm ..."/>
+                        <button type="submit" class="btnMobileSearch"></button>
+                    </form>
+                </div>
+                <div class="col-md-10">
+                    <div class="navHome">
+                        <?php
+                            $menu = $this->home()->menu(['positionId' => 1]);
+                            if($menu){
+                        ?>
+                        <ul>
+                            <?php
+                                foreach($menu as $m){
+                            ?>
+                                <li><a href="<?= $m->getUrl() ?>"><?= $m->getName(); ?></a></li>
+                            <?php
+                            }
+                            ?>
+                        </ul>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

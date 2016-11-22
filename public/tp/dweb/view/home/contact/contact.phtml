@@ -1,0 +1,68 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Liên hệ')));
+    $this->headMeta()->appendName('content', ('DWEB - là một cơ quan thiết kế website sáng tạo có trụ sở tại 295A Hoàng Mai, Hà Nội. Chúng tôi cung cấp dịch vụ thiết kế UI/UX layout Website/Mobile xây dựng thương hiệu'));
+    $this->headMeta()->appendName('keywords', ('Thiết kế website theo yêu cầu, UI/UX, Nhận dạng thương hiệu'));
+    $this->headMeta()->appendProperty('og:title', 'Difference Web');
+?>
+
+<div class="wrapper contact">
+
+    <div class="detail">
+        <div class="left">
+            <div>
+                <div class="logo">
+                    <a href="/" title="Differrence Web"><img src="/tp/dweb/image/dweb.png" alt="Differrence Web" /></a>
+                </div>
+                <p>Nếu bạn cảm thấy store giao diện của chúng tôi chưa phù hợp với bạn, bạn có thể gửi cho chúng tôi những yêu cầu mà bạn mong muốn nó xuất hiện trong Store giao diện của DWEB.
+                    Bất kỳ phản hồi nào của quý khách với DWEB chúng tôi sẽ cố gắng trả lời quý khách trong thời gian sớm nhất
+                </p>
+                <?php
+                    if(isset($this->error) && $this->error == 0){
+                        echo '<meta http-equiv="refresh" content="8;url=/" />';
+                        echo '<div class="successContact">'.$this->mes.'</div>';
+                    }else{
+                ?>
+                <form method="post">
+                    <?php
+                    $name = '';
+                    $phone = '';
+                    $email = '';
+                    if($this->user()->hasIdentity()){
+                        $name = $this->user()->getUser()->getFullName() ? $this->user()->getUser()->getFullName():ucfirst($this->user()->getUser()->getUserName());
+                        $phone = $this->user()->getUser()->getMobile();
+                        $email = $this->user()->getUser()->getEmail();
+                    }
+                    $error = $this->error;
+                    ?>
+                    <div <?= (isset($this->error['fullName']) ? 'class="error"':null ) ?>>
+                        <label>Họ và tên: *</label>
+                        <input type="text" maxlength="50" name="fullName" placeholder="Họ tên" required <?= (isset($name) ? 'value="'.$name.'"':null) ?> />
+                    </div>
+                    <div <?= (isset($this->error['phone']) ? 'class="error"':null ) ?>>
+                        <label>Số điện thoại: *</label>
+                        <input type="text" pattern="\d+" minlength="10" maxlength="12" name="phone" placeholder="Số điện thoại" required <?= (isset($phone) ? 'value="'.$phone.'"':null) ?> />
+                    </div>
+                    <div <?= (isset($this->error['email']) ? 'class="error"':null ) ?>>
+                        <label>Email: *</label>
+                        <input type="email" name="email" placeholder="Email" required <?= (isset($email) ? 'value="'.$email.'"':null) ?>/>
+                    </div>
+                    <div <?= (isset($this->error['content']) ? 'class="error"':null ) ?>>
+                        <label>Thông điệp:</label>
+                        <textarea name="content" placeholder="Thông điệp" required></textarea>
+                    </div>
+                    <div>
+                        <input type="submit" value="Gửi" />
+                    </div>
+                </form>
+                <?php
+                    }
+                ?>
+            </div>
+        </div>
+
+        <div class="right" style="overflow: hidden">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.14528402687!2d105.85828955248543!3d20.986812583986904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac16ed90e95d%3A0xa5d7bf71535f5433!2zMjk1IEhvw6BuZyBNYWksIEhvw6BuZyBWxINuIFRo4bulLCBIb8OgbmcgTWFpLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1465743287929" width="820" height="680" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

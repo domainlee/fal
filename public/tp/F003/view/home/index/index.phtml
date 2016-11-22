@@ -1,0 +1,110 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Trang chủ')));
+    $this->headMeta()->appendName('description', ('Trang chủ'));
+    $this->headMeta()->appendName('keywords', ('Trang chủ'));
+    $this->headMeta()->appendProperty('og:title', 'Trang chủ');
+?>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?php
+                    $banner = $this->home()->getBanner(['positionId' => 1]);
+                    if(!count($banner)){
+                        echo '<ul id="banner" class="owl-carousel owl-theme">';
+                        foreach($banner as $b){
+                            $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                            $img = '';
+                            if(count($images)){
+                                $c = 0;
+                                foreach($images as $i){
+                                    $c++;
+                                    if($c == 1){
+                                        $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                                    }
+                                }
+                            }
+                            echo '<li><a'.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>'.$img.'</a></li>';
+                        }
+                        echo '</ul>';
+                    }else{
+                        echo '<ul id="banner" class="owl-carousel owl-theme">';
+                            echo '<li><a><img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/1.jpg" /></a></li>';
+                            echo '<li><a><img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/2_1.jpg" /></a></li>';
+                            echo '<li><a><img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/3.jpg" /></a></li>';
+                            echo '<li><a><img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/4_1.jpg" /></a></li>';
+                            echo '<li><a><img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/_DSC4297.jpg" /></a></li>';
+                            echo '<li><a><img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/13281776_10154237872024169_1427654411_n.jpg" /></a></li>';
+                        echo '</ul>';
+                    }
+                ?>
+                <div class="feature2">
+                    <?php
+                        $banner = $this->home()->getBanner(['positionId' => 2]);
+                        if(!count($banner)){
+                            foreach($banner as $b){
+                                $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                                $img = '';
+                                if(count($images)){
+                                    $c = 0;
+                                    foreach($images as $i){
+                                        $c++;
+                                        if($c == 1){
+                                            $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                                        }
+                                    }
+                                }
+                                echo '<div>
+                                        <a '.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>
+                                        '.$img.'
+                                        </a>
+                                        <a '.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>
+                                            <h2>'.$b->getName().'</h2>
+                                            <span>Xem ngay</span>
+                                        </a>
+                                    </div>';
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="feature2">
+                <div class="col-md-5">
+                    <div>
+                        <img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/Travelbags.JPG" alt="" />
+                        <div>
+                            <p>Bộ sưu tập</p>
+                            <h2>Túi du lịch</h2>
+                            <a href="">Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/Accessories.JPG" alt="" />
+                        <div>
+                            <h2>Phụ kiện</h2>
+                            <a href="">Xem</a>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="http://cincinati.com.vn/media/wysiwyg/homeslider1190/Totebags.JPG" alt="" />
+                        <div>
+                            <h2>Túi Tote</h2>
+                            <a href="">Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <img src="http://cincinati.com.vn/media/wysiwyg/Men_bags_1_.jpg" alt="" />
+                        <div>
+                            <h2>Túi Nam</h2>
+                            <a href="">Mua ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

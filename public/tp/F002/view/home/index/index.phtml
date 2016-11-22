@@ -1,0 +1,224 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Trang chủ')));
+    $this->headMeta()->appendName('description', ('Trang chủ'));
+    $this->headMeta()->appendName('keywords', ('Trang chủ'));
+    $this->headMeta()->appendProperty('og:title', 'Trang chủ');
+?>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="left">
+                    <ul class="categoryProduct">
+                        <li><a href="/product">Sản phẩm</a></li>
+                        <?php
+                        $category = $this->category()->getCategories();
+                        if(count($category)){
+                            foreach($category as $c){
+                                ?>
+                                <li>
+                                <a href="<?= $c->getViewLink() ?>"><?= $c->getName() ?></a>
+                                <?php
+                                if($c->getChilds()){
+                                    echo '<ul class="nav2">';
+                                    foreach($c->getChilds() as $cc){
+                                        ?>
+                                        <li><a href="<?= $cc->getViewLink() ?>"><?= html_entity_decode($cc->getName()) ?></a></li>
+                                    <?php
+                                    }
+                                    echo '</ul>';
+                                    }
+                                ?>
+                                </li>
+                            <?php
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="right">
+                    <div class="WNewsFreeShip">
+                        <a>What's New</a>
+                        <a>Free Shipping</a>
+                    </div>
+                    <?php
+                        $banner = $this->home()->getBanner(['positionId' => 1]);
+                        if(count($banner)){
+                            echo '<ul id="banner" class="owl-carousel owl-theme">';
+                            foreach($banner as $b){
+                                $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                                $img = '';
+                                if(count($images)){
+                                    $c = 0;
+                                    foreach($images as $i){
+                                        $c++;
+                                        if($c == 1){
+                                            $img = '<img class="owl-lazy" data-src="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                                        }
+                                    }
+                                }
+                                echo '<li><a'.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>'.$img.'</a></li>';
+                            }
+                            echo '</ul>';
+                        }
+                    ?>
+                    <div class="navMobile">
+                        <?php
+                            $menu = $this->home()->menu(['positionId' => 1]);
+                            if($menu){
+                            ?>
+                            <ul>
+                                <?php
+                                foreach($menu as $m){
+                                    ?>
+                                    <li><a href="<?= $m->getUrl() ?>"><?= $m->getName(); ?></a></li>
+                                <?php
+                                }
+                                ?>
+
+                                <?php
+                                $category = $this->category()->getCategories();
+                                if(count($category)){
+                                    foreach($category as $c){
+                                        ?>
+                                        <li>
+                                        <a href="<?= $c->getViewLink() ?>"><?= $c->getName() ?></a>
+                                        <?php
+                                        if($c->getChilds()){
+                                            echo '<ul class="nav2">';
+                                            foreach($c->getChilds() as $cc){
+                                                ?>
+                                                <li><a href="<?= $cc->getViewLink() ?>"><?= html_entity_decode($cc->getName()) ?></a></li>
+                                            <?php
+                                            }
+                                            echo '</ul>';
+                                        }
+                                        ?>
+                                        </li>
+                                    <?php
+                                    }
+                                }
+                                ?>
+
+                            </ul>
+                        <?php
+                            }
+                        ?>
+                    </div>
+
+                    <div class="feature">
+                        <h2>Free Shipping</h2>
+                        <p>Trên tất cả các tỉnh thành chưa có cửa hàng Remmy</p>
+                    </div>
+                    <div class="feature2">
+                        <?php
+                            $banner = $this->home()->getBanner(['positionId' => 2]);
+                            if(count($banner)){
+                                foreach($banner as $b){
+                                    $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                                    $img = '';
+                                    if(count($images)){
+                                        $c = 0;
+                                        foreach($images as $i){
+                                            $c++;
+                                            if($c == 1){
+                                                $img = '<img class="lazy" src="/tp/F002/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                                            }
+                                        }
+                                    }
+                                    echo '<div>
+                                            <a '.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>
+                                            '.$img.'
+                                            </a>
+                                            <a '.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>
+                                                <h2>'.$b->getName().'</h2>
+                                                <span>Xem ngay</span>
+                                            </a>
+                                        </div>';
+                                }
+                            }else{
+                        ?>
+                            <div>
+                                <a href="">
+                                    <img class="lazy" src="/tp/F002/img/grey.gif" data-original="http://remmy.vn/cdn/store/882/art/article_1464580638_274.jpg" alt="Remmy.vn, Fashion, DWEB.VN" />
+                                </a>
+                                <a href="">
+                                    <h2>Sơ mi Remmy</h2>
+                                    <span>Xem ngay</span>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="">
+                                    <img class="lazy" src="/tp/F002/img/grey.gif" data-original="http://remmy.vn/cdn/store/882/art/article_1464076199_814.jpg" alt="Remmy.vn, Fashion, DWEB.VN" />
+                                </a>
+                                <a href="">
+                                    <h2>Giảm giá mùa hè</h2>
+                                    <span>Xem ngay</span>
+                                </a>
+                            </div>
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+                    <?php
+                        $new = $this->news()->searchArticle(['limit' => 3]);
+                        if(count($new)){
+                            echo '<ul class="lN">';
+                            foreach($new as $n){
+                                $images = $this->home()->getImages(['id' => $n->getId(), 'type' => 1]);
+                                $img = '';
+                                if(count($images)){
+                                    $c = 0;
+                                    foreach($images as $i){
+                                        $c++;
+                                        if($c == 1){
+                                            $img = '<img class="lazy" src="/tp/F001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$n->getTitle().'" />';
+                                        }
+                                    }
+                                }
+                                echo '<li>
+                                        <a href="'.$n->getViewLink().'">'.$img.'</a>
+                                        <a href="'.$n->getViewLink().'"><h2>'.$n->getTitle().'</h2></a>
+                                        <p>'.$n->getDescription().'</p>
+                                        <p><a href="'.$n->getViewLink().'">Đọc thêm</a></p>
+                                    </li>';
+                            }
+                            echo '</ul>';
+                        }
+                    ?>
+                    <?php
+                        $product = $this->product()->search(['limit' => 3]);
+                        if(count($product)){
+                            echo '<h1 class="titleHome"><span>Sản phẩm mới</span></h1>';
+                            echo '<ul class="lP">';
+                            foreach($product as $p){
+                                $images = $this->home()->getImages(['id' => $p->getId(), 'type' => 2]);
+                                $img = '';
+                                if(count($images)){
+                                    $c = 0;
+                                    foreach($images as $i){
+                                        $c++;
+                                        if($c == 1){
+                                            $img = '<img class="lazy" src="/tp/F001/img/grey.gif" data-original="'.$i->getOption('media')->getPictureUri().'" alt="'.$p->getName().'" />';
+                                        }
+                                    }
+                                }
+                                echo '<li>
+                                <a class="pI" href="'.$p->getViewLink().'">'.$img.'</a>
+                                <h2><a href="'.$p->getViewLink().'">Mua ngay</a></h2>
+                            </li>';
+                            }
+                            echo '</ul>';
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

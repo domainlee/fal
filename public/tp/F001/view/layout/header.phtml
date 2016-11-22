@@ -1,0 +1,98 @@
+<div class="head">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <form id="search" action="/search" method="get">
+                    <input type="text" name="q" placeholder="Tìm kiếm ..."/>
+                    <a href="javascript:{}" onclick="document.getElementById('search').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    <div id="searchFolding"></div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="logo">
+                    <a href="/">FASHION<p>Make of style</p></a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="RegisterLogin">
+                    <?php
+                        if ($this->user()->hasIdentity()) {
+                    ?>
+                        <li><a>Xin chào: <?= $this->user()->getUser()->getFullName() ? $this->user()->getUser()->getFullName():ucfirst($this->user()->getUser()->getUserName()) ?></a></li>
+                        <li><a href="/user/signout">Thoát</a></li>
+                    <?php
+                        }else{
+                    ?>
+                        <li><a href="/user/signup">Đăng ký</a></li>
+                        <li><a href="/user/signin">Đăng nhập</a></li>
+                    <?php
+                        }
+                    ?>
+                    <?php
+                        $cartService = $this->cart()->getServiceCart();
+                        $products = $cartService->getProducts();
+                    ?>
+                    <li><a class="totalCart" href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span><?= $cartService->getTotalProducts() ?></span></a></li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <div class="nav">
+                    <?php
+                        $category = $this->category()->getCategories();
+//                        $n = $this->newsCategory()->getCategories();
+//                        if(count($n)){
+//                            foreach($n as $b){
+//                                echo '<a href="'.$b->getViewLink().'">'.$b->getName().'</a>';
+//                            }
+//                        }
+                    ?>
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>
+                        <?php
+                            if(count($category)){
+                            foreach($category as $c){
+                        ?>
+                                <li>
+                                    <a href="<?= $c->getViewLink() ?>"><?= $c->getName() ?></a>
+                                    <?php
+                                    if($c->getChilds()){
+                                        echo '<div>
+                                        <ul class="nav1">
+                                            <h2>Có gì mới</h2>
+                                            <li><a href="">Hàng mới</a></li>
+                                            <li><a href="">OFF 30% for more than 2 items</a></li>
+                                        </ul>
+                                        <ul class="nav2"><h2>Danh mục</h2>';
+                                        foreach($c->getChilds() as $cc){
+                                            ?>
+                                                <li><a href="<?= $cc->getViewLink() ?>"><?= $cc->getName() ?></a></li>
+                                            <?php
+                                        }
+                                        echo '</ul>';
+
+                                        $new = $this->news()->searchArticle(['limit' => 5]);
+
+                                        if(count($new)){
+                                            echo '<ul class="nav3"><h2>Bài viết nổi bật</h2>';
+                                                foreach($new as $n){
+                                                    ?>
+                                                        <li><a href="<?= $n->getViewLink() ?>"><?= $n->getTitle() ?></a></li>
+                                                    <?php
+                                                }
+                                                echo '</ul>';
+                                        }
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                </li>
+                        <?php
+                            }
+                            }
+                        ?>
+                        <li><a href="/news">Tin tức</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

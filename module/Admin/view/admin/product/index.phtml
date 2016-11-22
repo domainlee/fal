@@ -1,0 +1,50 @@
+<?php
+    echo $this->headtitle($this->escapehtml($this->translate('Danh sách sản phẩm')));
+?>
+<div class="">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="page-title">
+                Danh sách sản phẩm
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/admin">Admin</a>
+                </li>
+                <li>
+                    <a href="/admin/product">Sản phẩm</a>
+                </li>
+            </ul>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="portlet-body">
+                    <div id="sample_editable_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                        <div class="row-fluid">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-10 dataTables_filter">
+                                <?php
+                                echo $this->partial ( 'partial/form', array (
+                                    'form' => $this->fFilter
+                                ));
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                        echo $dg = new \Admin\Dg\DgProduct ( array (
+                            'data' => $this->results->getData (),
+                            'paging' => $this->results->getPaging (),
+                            'rowCount' => $this->results->getRowCount (),
+                            'rowInPage' => $this->results->getRowInPage (),
+                        ));
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

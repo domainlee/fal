@@ -1,0 +1,40 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+    <head>
+        <?php
+            echo $this->headTitle('DWEB | Difference Web')->setSeparator(' - ')->setAutoEscape(false);
+            $this->headMeta()->appendName('DC.language', 'scheme=utf-8 content=vi');
+            $this->headMeta()->appendName('author', 'DWEB.VN');
+            $this->headMeta()->appendName('format-detection', 'telephone=no');
+            $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1, maximum-scale=1');
+            echo $this->headMeta();
+            echo $this->headLink(['rel' => 'Shortcut Icon', 'type' => 'image/x-icon', 'href' => '/tp/dweb/image/favicon.ico']);
+        ?>
+
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+        <?php
+            $cs = [
+                '/tp/dweb/css/bootstrap.min.css',
+                '/css/font-awesome.min.css',
+                '/tp/dweb/css/a.css',
+            ];
+            echo '<link href="'.srcLink($cs,3).'" media="screen" rel="stylesheet" type="text/css">';
+        ?>
+
+    </head>
+    <body <?= $this->UriParams()->getRequest()->getRequestUri() == '/about' ? 'class="page-about"':null ?>>
+        <?php
+            echo $this->render('layout/header');
+            echo $this->content;
+            echo $this->render('layout/footer');
+        ?>
+    </body>
+    <?php
+        $js = [
+            '/tp/dweb/js/jquery-1.10.1.min.js',
+            '/tp/dweb/js/bootstrap.min.js',
+            '/tp/dweb/js/a.js',
+        ];
+        echo '<script type="text/javascript" src="'.srcLink($js,1).'"></script>';
+    ?>
+</html>

@@ -1,0 +1,33 @@
+<div id="header">
+	<div id="lg-sr">
+		<div id="head-logo">
+			<a href="/">
+				<img src="/tp/shopping/img/logo.png" />
+			</a>
+		</div>
+		<div id="head-search">
+			<div id="hd-cart"><i class="fa fa-shopping-cart"></i><span>0</span></div>
+			<div id="clearfix"></div>
+			<div id="search">
+				<form method="get">
+					<input type="text" id="txtSearch" placeholder="nhập từ khóa cần tìm ...">
+					<input type="submit" value="search" id="btsearch">
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="clearfix"></div>
+	<div id="head-menu">
+		<ul>
+			<li class="active"><a href="/">Trang chủ</a></li>
+			<?php 
+				$category = $this->category()->getCategories();
+				foreach ($category as $cate){
+			?>
+			<li><a href="<?= $cate->getViewLink();?>"><?= $cate->getName();?></a></li>
+			<?php }?>
+			<li><a href="/">Thời trang</a></li>
+			<li><a href="/">Xu hướng</a></li>
+		</ul>
+	</div>
+</div>	

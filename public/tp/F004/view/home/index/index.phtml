@@ -1,0 +1,74 @@
+<?php
+    $this->headTitle($this->escapeHtml($this->translate('Trang chủ')));
+    $this->headMeta()->appendName('description', ('Trang chủ'));
+    $this->headMeta()->appendName('keywords', ('Trang chủ'));
+    $this->headMeta()->appendProperty('og:title', 'Trang chủ');
+?>
+<div class="main">
+    <div class="slider">
+        <?php
+        $banner = $this->home()->getBanner(['positionId' => 1]);
+        if(!count($banner)){
+            echo '<ul id="banner" class="owl-carousel owl-theme">';
+            foreach($banner as $b){
+                $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                $img = '';
+                if(count($images)){
+                    $c = 0;
+                    foreach($images as $i){
+                        $c++;
+                        if($c == 1){
+                            $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                        }
+                    }
+                }
+                echo '<li><a'.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>'.$img.'</a></li>';
+            }
+            echo '</ul>';
+        }else{
+            echo '<ul id="banner" class="owl-carousel owl-theme">';
+            echo '<li><a><img src="/tp/F004/img/slider1.png" /></a></li>';
+            echo '<li><a><img src="/tp/F004/img/slider2.png" /></a></li>';
+            echo '</ul>';
+        }
+        ?>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="feature2">
+                    <?php
+                        $banner = $this->home()->getBanner(['positionId' => 2]);
+                        if(!count($banner)){
+                            foreach($banner as $b){
+                                $images = $this->home()->getImages(['id' => $b->getId(), 'type' => 4]);
+                                $img = '';
+                                if(count($images)){
+                                    $c = 0;
+                                    foreach($images as $i){
+                                        $c++;
+                                        if($c == 1){
+                                            $img = '<img src="'.$i->getOption('media')->getPictureUri().'" alt="'.$b->getName().'" />';
+                                        }
+                                    }
+                                }
+                                echo '<div>
+                                        <a '.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>
+                                        '.$img.'
+                                        </a>
+                                        <a '.($b->getLink() ? ' href="'.$b->getLink().'"':'').'>
+                                            <h2>'.$b->getName().'</h2>
+                                            <span>Xem ngay</span>
+                                        </a>
+                                    </div>';
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

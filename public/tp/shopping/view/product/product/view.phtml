@@ -1,0 +1,92 @@
+<?php
+$results = $this->results;
+$prochild = $this->prochild;
+$size = $this->size;
+$color =  $this->color;
+// echo $this->headLink()->appendStylesheet('js/cloudzoom/cloudzoom.css');
+// echo $this->headScript()->appendFile('js/cloudzoom/cloudzoom.js');
+?>
+<link rel="stylesheet" type="text/css" href="/js/cloudzoom/cloudzoom.css"/>
+<script type="text/javascript" src="/js/cloudzoom/cloudzoom.js"></script>
+<script type="text/javascript" src="/tp/shopping/js/pview.js"></script>
+<script type="text/javascript" src="/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+<div id="pro-view">
+	<h3>breacrumb</h3>
+	<div id="pro-view-item">
+		<div id="pro-view-img">
+			<div id="view-img">
+					<img id="z" class="cloudzoom" src="<?= $results->getImgUri();?>"
+						data-cloudzoom="
+				             zoomImage: '<?= $results->getImgUri();?>',
+				             animationTime: 50,
+				             easeTime: 0,
+				             easing: 0,
+				             zoomFlyOut: false,
+				             zoomWidth: 450,
+				             zoomHeight: 384"
+				     />
+			</div>
+			<div id="imgchild">
+				<ul>
+				<?php 
+				if(count($prochild)){
+					foreach ($prochild as $pc){ ?>
+					<li>
+						<img class='cloudzoom-gallery' src="<?= $pc->getImgUri() ?>"
+                             data-cloudzoom="useZoom: '.cloudzoom', image: '<?= $pc->getImgUri() ?>', zoomImage: '<?= $pc->getImgUri() ?>'">
+					</li>
+				<?php }
+					}else{	?>
+						<li>
+							<img class='cloudzoom-gallery' src="<?= $results->getImgUri() ?>"
+                             data-cloudzoom="useZoom: '.cloudzoom', image: '<?= $results->getImgUri() ?>', zoomImage: '<?= $results->getImgUri() ?>'">
+						</li>
+				<?php	}
+				?>
+				</ul>
+			</div>
+		</div>
+		<div id="pro-view-info">
+			<p id="pro-view-name"><?= $results->getName();?></p>
+			<p id="pro-view-code">Mã sản phẩm: <?= $results->getCode();?></p>
+			<p id="pro-view-price"><?= number_format($results->getPrice());?> vnđ</p>
+			
+			<p id="pro-view-color" class="color" column="colorId">
+			<?php 
+				if(is_array(($color)) && count($color)){
+					foreach ($color as $p){?>
+					<a href="javascript:void(0);" value="<?= $p->getColorId();?>" style="background: <?='#'.$p->getValue();?>"></a>
+			<?php }
+				}else{	?>
+					<a href="javascript:void(0);" value="<?= $results->getColorId();?>" class="active" style="background: <?='#'.$results->getValue();?>"></a>
+			<?php	}
+			?>
+				
+			</p>
+			<p id="pro-view-size" class="size" column="size">
+			<?php 
+				if(count($size)){
+					foreach ($size as $s){?>
+					<a href="javascript:void(0);" value="<?= $s->getSize();?>"><?= $s->getSize();?></a>
+			<?php }
+				}else{	?>
+					<a href="javascript:void(0);" value="<?= $results->getSize();?>" class="active"><?= $results->getSize();?></a>
+			<?php	}
+			?>
+			</p>
+			<p id="pro-view-qtt">
+				Số lượng 
+				<b><i id="psQttDown">-</i>
+				<i id="psQtt" max="1" val="1" style="background: none;">1</i>
+				<i id="psQttUp">+</i>
+				</b>
+			</p>
+			<p id="btaddCr">
+		 	<button id="btAddCart" class="unsel" psId="<?= $results->getId();?>">Mua ngay</button>
+			</p>
+		</div>
+	</div>
+	<div id="pro-view-adv">
+		<img src="/tp/shopping/img/mixDep.jpg" />
+	</div>
+</div>

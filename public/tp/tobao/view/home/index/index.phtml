@@ -1,0 +1,240 @@
+<div class="content">
+    <div class="container">
+        <div class="main">
+            <div class="leftMain">
+                <div class="Represent">
+                    <?php
+                        $new = $this->news()->searchArticle(['type' => 1]);
+                        foreach($new as $n){
+                            ?>
+                            <a href="<?= $n->getViewLink() ?>"><img src="<?= $n->getPictureUri() ?>" alt="<?= $n->getTitle() ?>" /></a>
+                            <h2>
+                                <a href="<?= $n->getViewLink() ?>" title="<?= $n->getTitle() ?>"><?= $n->getTitle() ?></a>
+                            </h2>
+                            <p class="meta">
+                                <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                            </p>
+                        <?php
+                        }
+                        ?>
+                    <ul class="RepresentMore1">
+                        <?php
+                            $new = $this->news()->searchArticle(['type' => 2]);
+                            foreach($new as $n){
+                        ?>
+                        <li>
+                            <h2><a href="<?= $n->getViewLink() ?>"><?= $n->getTitle() ?></a></h2>
+                            <a href="<?= $n->getViewLink() ?>">
+                                <img src="<?= $n->getPictureUri() ?>" alt="<?= $n->getTitle() ?>">
+                            </a>
+                            <p><?= $n->getDescription() ?></p>
+                            <p class="meta">
+                                <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                            </p>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                    </ul>
+                </div>
+                <div class="RepresentMore2">
+                    <ul>
+                        <li>
+                            <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                            <p class="meta">
+                                <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                            </p>
+                        </li>
+                        <li>
+                            <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                            <p class="meta">
+                                <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                            </p>
+                        </li>
+                        <li>
+                            <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                            <p class="meta">
+                                <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                            </p>
+                        </li>
+                        <li>
+                            <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                            <p class="meta">
+                                <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                            </p>
+                        </li>
+                        <li>
+                            <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                            <p class="meta">
+                                <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                            </p>
+                        </li>
+                    </ul>
+                    <div class="readMore">
+                        <h1 class="titleBox"><a href="">Đọc nhiều</a></h1>
+                        <ul>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="categoryMain">
+                    <div class="gutter-sizer"></div>
+                    <div class="categoryLeft">
+                        <h1 class="titleBox titleBox1"><a href="">Xã hội</a></h1>
+                        <ul>
+                            <li>
+                                <a href=""><img src="http://2.i.baomoi.xdn.vn/w626/16/01/16/4/18461659/1_82234.jpg" alt="" /> </a>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="categoryLeft">
+                        <h1 class="titleBox titleBox1"><a href="">Thế giới</a></h1>
+                        <ul>
+                            <li>
+                                <a href=""><img src="http://2.i.baomoi.xdn.vn/w626/16/01/16/4/18461659/1_82234.jpg" alt="" /> </a>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="categoryLeft">
+                        <h1 class="titleBox titleBox1"><a href="">Xã hội</a></h1>
+                        <ul>
+                            <li>
+                                <a href=""><img src="http://2.i.baomoi.xdn.vn/w626/16/01/16/4/18461659/1_82234.jpg" alt="" /> </a>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="categoryLeft">
+                        <h1 class="titleBox titleBox1"><a href="">Thế giới</a></h1>
+                        <ul>
+                            <li>
+                                <a href=""><img src="http://2.i.baomoi.xdn.vn/w626/16/01/16/4/18461659/1_82234.jpg" alt="" /> </a>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Ông Trương Minh Tuấn: 'Không nên suy diễn thông tin về nhân sự Đảng</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                            <li>
+                                <h2><a href="">Sân bay Long Thành có nguy cơ chậm tiến độ 5 năm</a></h2>
+                                <p class="meta">
+                                    <a href="/thanhnien.vn-Bao-Thanh-Nien-Thanh-Nien/p/19.epi">Thanh Niên</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="advMain">
+
+            </div>
+        </div>
+    </div>
+</div>

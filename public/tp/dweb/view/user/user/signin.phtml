@@ -1,0 +1,33 @@
+<?php
+	$this->headTitle($this->escapeHtml($this->translate("Đăng nhập")));
+    $cs = [
+        '/tp/dweb/css/u.css'
+    ];
+    echo '<link href="'.srcLink($cs,1).'" media="screen" rel="stylesheet" type="text/css">';
+?>
+<div class="wrapper">
+    <div class="header">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="logo">
+                    <a href="/" title="Differrence Web"><img src="/tp/dweb/image/dweb.png" alt="Differrence Web"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="signin signup">
+                        <?php
+
+                        echo "<h1>". $this->translate("Đăng nhập") ."</h1>";
+                        echo $this->partial('partial/form', array('form' => $this->form));
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
